@@ -5,12 +5,16 @@ import Components from 'unplugin-vue-components/rspack';
 import { VantResolver } from '@vant/auto-import-resolver';
 
 export default defineConfig({
+  dev: {
+    lazyCompilation: true
+  },
   plugins: [pluginVue()],
   tools: {
     rspack: {
       plugins: [
         AutoImport({
           resolvers: [VantResolver()],
+          imports: ['vue', 'vue-router', 'vue-i18n', 'pinia']
         }),
         Components({
           resolvers: [VantResolver()],
