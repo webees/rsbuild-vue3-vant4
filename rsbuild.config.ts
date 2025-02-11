@@ -6,7 +6,7 @@ import { VantResolver } from '@vant/auto-import-resolver';
 
 export default defineConfig({
   dev: {
-    lazyCompilation: true
+    lazyCompilation: false
   },
   plugins: [pluginVue()],
   tools: {

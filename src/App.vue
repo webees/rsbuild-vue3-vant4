@@ -1,28 +1,23 @@
 <template>
-  <div class="content">
-    <h1>Rsbuild with Vue</h1>
-    <p>Start building amazing things with Rsbuild.</p>
+  <div>
+    <router-view />
+    <tab-bar v-show="$route.meta.tabbar" />
   </div>
 </template>
 
-<style scoped>
-.content {
-  display: flex;
-  min-height: 100vh;
-  line-height: 1.1;
-  text-align: center;
-  flex-direction: column;
-  justify-content: center;
-}
+<script lang="ts" setup>
+import i18n from '@i18n'
 
-.content h1 {
-  font-size: 3.6rem;
-  font-weight: 700;
-}
+const route = useRoute()
+watch(
+  () => route.meta.title,
+  v => {
+    if (v) {
+      window.document.title = i18n.t(v as string)
+    }
+  },
+  { immediate: true }
+)
+</script>
 
-.content p {
-  font-size: 1.2rem;
-  font-weight: 400;
-  opacity: 0.5;
-}
-</style>
+<style scoped></style>

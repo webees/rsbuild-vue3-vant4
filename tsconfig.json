@@ -21,7 +21,12 @@
     "noUnusedParameters": true,
 
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@assets": ["./src/assets/*"],
+      "@app": ["./src/index.ts"],
+      "@i18n": ["./src/vue-i18n.ts"],
+      "@pinia": ["./src/vue-pinia.ts"],
+      "@router": ["./src/vue-router.ts"]
     }
   },
   "include": ["src"]
