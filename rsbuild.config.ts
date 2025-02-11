@@ -14,10 +14,12 @@ export default defineConfig({
       plugins: [
         AutoImport({
           resolvers: [VantResolver()],
-          imports: ['vue', 'vue-router', 'vue-i18n', 'pinia']
+          imports: ['vue', 'vue-router', 'vue-i18n', 'pinia'],
+          dts: 'src/types/auto-imports.d.ts'
         }),
         Components({
           resolvers: [VantResolver()],
+          dts: 'src/types/components.d.ts'
         }),
       ],
     },
