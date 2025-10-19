@@ -2,19 +2,19 @@
  * vue-i18n
  * see more : https://vue-i18n.intlify.dev/guide/advanced/lazy.html
  */
-import { App } from 'vue'
-import { createI18n } from 'vue-i18n'
-import { app } from '@/vue-pinia'
-import Axios from 'axios'
 
+import Axios from 'axios'
+import type { App } from 'vue'
+import { createI18n } from 'vue-i18n'
 import messages from '@/i18n/enUS'
+import { app } from '@/vue-pinia'
 
 let DEFAULT_LANG: string
 let I18N: any
 
 const SUPPORT_LOCALES = ['enUS']
 
-async function setI18nLanguage(lang: any): Promise<string> {
+async function setI18nLanguage(lang: string): Promise<string> {
   I18N.global.locale.value = lang
   if (I18N.mode === 'legacy') {
     I18N.global.locale = lang
@@ -30,7 +30,9 @@ async function setI18nLanguage(lang: any): Promise<string> {
 export async function loadLocaleMessages(lang: string): Promise<string> {
   if (I18N.global.locale !== lang) {
     if (!SUPPORT_LOCALES.includes(lang)) {
-      return import(/* webpackChunkName: "lang-[request]" */ `@/i18n/${lang}`).then(msgs => {
+      return import(
+        /* webpackChunkName: "lang-[request]" */ `@/i18n/${lang}`
+      ).then(msgs => {
         I18N.global.setLocaleMessage(lang, msgs.default[lang])
         SUPPORT_LOCALES.push(lang)
         return setI18nLanguage(lang)

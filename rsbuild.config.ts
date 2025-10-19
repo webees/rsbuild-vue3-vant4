@@ -1,8 +1,8 @@
-import { defineConfig } from '@rsbuild/core';
-import { pluginVue } from '@rsbuild/plugin-vue';
-import AutoImport from 'unplugin-auto-import/rspack';
-import Components from 'unplugin-vue-components/rspack';
-import { VantResolver } from '@vant/auto-import-resolver';
+import { defineConfig } from '@rsbuild/core'
+import { pluginVue } from '@rsbuild/plugin-vue'
+import { VantResolver } from '@vant/auto-import-resolver'
+import AutoImport from 'unplugin-auto-import/rspack'
+import Components from 'unplugin-vue-components/rspack'
 
 export default defineConfig({
   dev: {
@@ -20,8 +20,8 @@ export default defineConfig({
         Components({
           resolvers: [VantResolver()],
           dts: 'src/types/components.d.ts'
-        }),
-      ],
-    },
-  },
-});
+        })
+      ]
+    }
+  }
+})

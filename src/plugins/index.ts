@@ -1,7 +1,7 @@
 import './vant'
 
-window.onload = function () {
-  document.addEventListener('touchstart', function (event) {
+window.onload = () => {
+  document.addEventListener('touchstart', event => {
     if (event.touches.length > 1) {
       event.preventDefault()
     }
@@ -9,7 +9,7 @@ window.onload = function () {
   let lastTouchEnd = 0
   document.addEventListener(
     'touchend',
-    function (event) {
+    event => {
       const now = new Date().getTime()
       if (now - lastTouchEnd <= 200) {
         event.preventDefault()
@@ -18,7 +18,7 @@ window.onload = function () {
     },
     false
   )
-  document.addEventListener('gesturestart', function (event) {
+  document.addEventListener('gesturestart', event => {
     event.preventDefault()
   })
 }
