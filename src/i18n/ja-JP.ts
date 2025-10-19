@@ -1,12 +1,12 @@
 export default {
   'ja-JP': {
     _tabbar: {
-      home: 'Home',
-      chat: 'Chat',
-      me: 'Me'
+      home: 'ホーム',
+      chat: 'チャット',
+      me: '私'
     },
-    home: 'Home',
-    chat: 'Chat',
-    me: 'Me'
+    home: 'ホーム',
+    chat: 'チャット',
+    me: '私'
   }
 }
