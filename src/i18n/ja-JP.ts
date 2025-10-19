@@ -1,5 +1,5 @@
 export default {
-  jaJP: {
+  'ja-JP': {
     _tabbar: {
       home: 'Home',
       chat: 'Chat',

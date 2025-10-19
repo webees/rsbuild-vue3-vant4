@@ -1,5 +1,5 @@
 export default {
-  enUS: {
+  'en-US': {
     _tabbar: {
       home: 'Home',
       chat: 'Chat',

@@ -1,67 +1,41 @@
-/**
- * vue-i18n
- * see more : https://vue-i18n.intlify.dev/guide/advanced/lazy.html
- */
-
 import Axios from 'axios'
 import type { App } from 'vue'
+import type { Composer } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
-import messages from '@/i18n/enUS'
+import enUS from '@/i18n/en-US'
 import { app } from '@/vue-pinia'
 
-let DEFAULT_LANG: string
-let I18N: any
+let i18n!: ReturnType<typeof createI18n>
+const g = () => i18n.global as unknown as Composer
 
-const SUPPORT_LOCALES = ['enUS']
-
-async function setI18nLanguage(lang: string): Promise<string> {
-  I18N.global.locale.value = lang
-  if (I18N.mode === 'legacy') {
-    I18N.global.locale = lang
-  } else {
-    I18N.global.locale.value = lang
-  }
-  Axios.defaults.headers.common['Accept-Language'] = lang
-  document.querySelector('html')?.setAttribute('lang', lang)
-  app().language = lang
-  return lang
+const setLang = (v: string) => {
+  g().locale.value = v
+  Axios.defaults.headers.common['Accept-Language'] = v
+  document.documentElement.lang = v
+  app().language = v
+  return v
 }
 
-export async function loadLocaleMessages(lang: string): Promise<string> {
-  if (I18N.global.locale !== lang) {
-    if (!SUPPORT_LOCALES.includes(lang)) {
-      return import(
-        /* webpackChunkName: "lang-[request]" */ `@/i18n/${lang}`
-      ).then(msgs => {
-        I18N.global.setLocaleMessage(lang, msgs.default[lang])
-        SUPPORT_LOCALES.push(lang)
-        return setI18nLanguage(lang)
+export const loadLang = async (v: string) =>
+  g().availableLocales.includes(v)
+    ? setLang(v)
+    : import(/* webpackChunkName: "lang-[request]" */ `@/i18n/${v}`).then(m => {
+        g().setLocaleMessage(v, m.default[v])
+        return setLang(v)
       })
-    }
-    console.log('setI18nLanguage(' + lang + ')')
-    return Promise.resolve(setI18nLanguage(lang))
-  }
-  return Promise.resolve(lang)
-}
 
 export default {
-  install(vueApp: App) {
-    DEFAULT_LANG = app().language
-    if (!DEFAULT_LANG) {
-      DEFAULT_LANG = window.navigator.language.split('-').join('')
-      app().language = DEFAULT_LANG
-    }
-    I18N = createI18n({
+  install(a: App) {
+    const l = app().language || navigator.language
+    i18n = createI18n({
       legacy: false,
-      locale: DEFAULT_LANG,
-      default: 'enUS',
-      fallbackLocale: 'enUS',
-      silentTranslationWarn: false,
+      locale: l,
+      fallbackLocale: 'en-US',
       globalInjection: true,
-      messages
+      messages: enUS
     })
-    vueApp.use(I18N)
-    loadLocaleMessages(DEFAULT_LANG)
+    a.use(i18n)
+    loadLang(l)
   },
-  t: (v: string) => I18N.global.t(v)
+  t: (k: string) => g().t(k)
 }

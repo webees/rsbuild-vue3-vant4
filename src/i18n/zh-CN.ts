@@ -1,5 +1,5 @@
 export default {
-  zhCN: {
+  'zh-CN': {
     _tabbar: {
       home: '首页',
       chat: '消息',
