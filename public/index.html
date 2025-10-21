@@ -1,0 +1,29 @@
+<%
+const CDN = '//fastly.jsdelivr.net'
+const IS_DEV = process.env.NODE_ENV === 'development' ? '.' : '.prod.'
+const SCRIPTS = [
+  `vue@3.5/dist/vue.global${IS_DEV}js`,
+  `vue-router@4.6/dist/vue-router.global${IS_DEV}js`,
+  `vue-i18n@11.1/dist/vue-i18n.global${IS_DEV}js`,
+  'axios@1.12/dist/axios.min.js',
+  'vant@4.9/lib/vant.min.js'
+]
+%>
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="dns-prefetch" href="<%= CDN %>">
+    <link rel="icon" href="favicon.ico">
+    <title></title>
+    <% for (const path of SCRIPTS) { %>
+    <script src="<%= CDN %>/npm/<%= path %>"></script>
+    <% } %>
+  </head>
+  <body>
+    <div id="<%= mountId %>"></div>
+  </body>
+</html>

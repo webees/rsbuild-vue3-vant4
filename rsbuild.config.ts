@@ -8,6 +8,19 @@ export default defineConfig({
   dev: {
     lazyCompilation: false
   },
+  output: {
+    externals: {
+      vue: 'Vue',
+      'vue-router': 'VueRouter',
+      'vue-i18n': 'VueI18n',
+      axios: 'axios'
+    }
+  },
+  html: {
+    title: undefined,
+    meta: undefined,
+    template: 'public/index.html',
+  },
   plugins: [pluginVue()],
   tools: {
     rspack: {

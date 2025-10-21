@@ -1,36 +1,16 @@
-# Rsbuild project
+# 前端基础框架设计说明
 
-## Setup
+## 🧩 技术基础
+- 使用 **Bun** 作为运行时环境，提供高性能的构建与运行支持。
 
-Install the dependencies:
+## 🌍 国际化（i18n）
+- 采用 **按需加载（lazy load）** 策略，仅在用户切换语言或首次访问对应语言时加载对应语言包，减少首屏加载体积。
 
-```bash
-pnpm install
-```
+## 🧭 路由管理
+- 实现 **模块化路由结构**，每个功能模块独立维护自身路由文件，通过主入口动态注册，方便扩展与维护。
 
-## Get started
+## 🧱 状态管理
+- 状态采用 **模块化管理**，各业务模块拥有独立的 store，按需加载与注册，避免全局状态臃肿。
 
-Start the dev server, and the app will be available at [http://localhost:3000](http://localhost:3000).
-
-```bash
-pnpm dev
-```
-
-Build the app for production:
-
-```bash
-pnpm build
-```
-
-Preview the production build locally:
-
-```bash
-pnpm preview
-```
-
-## Learn more
-
-To learn more about Rsbuild, check out the following resources:
-
-- [Rsbuild documentation](https://rsbuild.rs) - explore Rsbuild features and APIs.
-- [Rsbuild GitHub repository](https://github.com/web-infra-dev/rsbuild) - your feedback and contributions are welcome!
+## 📦 公共组件
+- 所有 **通用组件** 统一托管于公共 CDN，通过外部链接引入，减少项目重复打包体积并便于版本统一管理。
