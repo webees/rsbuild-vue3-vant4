@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkrsbuild_vue3_vant4=self.webpackChunkrsbuild_vue3_vant4||[]).push([["254"],{654:function(e,n,u){u.r(n),u.d(n,{default:()=>t});var l=u(61);let t=(0,u(262).default)({},[["render",function(e,n){return(0,l.openBlock)(),(0,l.createElementBlock)("span",null,"me")}]])}}]);

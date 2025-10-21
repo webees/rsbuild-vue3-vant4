@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkrsbuild_vue3_vant4=self.webpackChunkrsbuild_vue3_vant4||[]).push([["867"],{736:function(e,a,t){t.d(a,{default:()=>u});let u={"ja-JP":{_tabbar:{home:"ホーム",chat:"チャット",me:"私"},home:"ホーム",chat:"チャット",me:"私"}}}}]);

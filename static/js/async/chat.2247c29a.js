@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkrsbuild_vue3_vant4=self.webpackChunkrsbuild_vue3_vant4||[]).push([["730"],{508:function(e,n,u){u.r(n),u.d(n,{default:()=>l});var t=u(61);let l=(0,u(262).default)({},[["render",function(e,n){return(0,t.openBlock)(),(0,t.createElementBlock)("span",null,"chat")}]])}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkrsbuild_vue3_vant4=self.webpackChunkrsbuild_vue3_vant4||[]).push([["37"],{658:function(e,t,u){u.d(t,{default:()=>a});let a={"zh-CN":{_tabbar:{home:"首页",chat:"消息",me:"我"},home:"首页",chat:"消息",me:"我"}}}}]);
