@@ -1,0 +1,27 @@
+name: 🚀 Build and Deploy
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches: [ "main" ]
+    tags: [ '*' ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install && bun run build
+      - run: |
+          zip -r dist/dist.zip dist/*
+          MD5=$(md5sum dist/dist.zip | awk '{print $1}')
+          mv dist/dist.zip dist/${MD5}.zip
+          echo $MD5 > dist/ver
+      - uses: JamesIves/github-pages-deploy-action@v4.6.1
+        with:
+          branch: dist
+          folder: dist
