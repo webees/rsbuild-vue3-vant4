@@ -20,7 +20,7 @@ const SCRIPTS = [
     <link rel="icon" href="favicon.ico">
     <title></title>
     <% for (const path of SCRIPTS) { %>
-    <script src="<%= CDN %>/npm/<%= path %>"></script>
+    <script defer crossorigin="anonymous" src="<%= CDN %>/npm/<%= path %>"></script>
     <% } %>
   </head>
   <body>
