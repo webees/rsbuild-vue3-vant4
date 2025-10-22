@@ -8,11 +8,21 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 const files = require.context('./router', true, /\.ts$/)
 const modules: Array<RouteRecordRaw> = []
 
+// path -> alias 的映射表
+const pathAliasMap = new Map<string, string>()
+
+// 把 "/me" 这种语义路径转为数字别名（如 "/3"），无则返回 null
+export function aliasOf(path: string): string | undefined {
+  return pathAliasMap.get(path)
+}
+
 files.keys().forEach((k, i) => {
   if (k === './index.ts') return
   const file = files(k) as { default: RouteRecordRaw }
   const route = file.default
-  route.alias = '/' + i++
+  const alias = '/' + i++
+  route.alias = alias
+  pathAliasMap.set(route.path, alias) // 建立映射：/home -> /1
   modules.push(route)
 })
 
