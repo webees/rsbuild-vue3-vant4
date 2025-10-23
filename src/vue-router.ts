@@ -16,11 +16,15 @@ export function aliasOf(path: string): string | undefined {
   return pathAliasMap.get(path)
 }
 
+function aliasCode(num: number) {
+  return ((num * 37 + 11) % 1000)
+}
+
 files.keys().forEach((k, i) => {
   if (k === './index.ts') return
   const file = files(k) as { default: RouteRecordRaw }
   const route = file.default
-  const alias = '/' + i++
+  const alias = '/' + aliasCode(i++)
   route.alias = alias
   pathAliasMap.set(route.path, alias) // 建立映射：/home -> /1
   modules.push(route)
